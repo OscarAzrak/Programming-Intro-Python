@@ -1,0 +1,42 @@
+from tkinter import *
+
+root = Tk
+
+#välkommen skärm, där kan man skriva sitt namn, välja storlek på spelet.
+#knapp som går vidare till spelet, felhantering som kollar att namnet är
+# korrekt och om man valt storlek på brädan
+
+#visa gömda bilder
+#om man trycker en bild ska den bilden visas, och man ska kunna välja en annan bild
+#om den andra bilden är samma som första bilden
+#håll kvar båda bilderna
+#om de ej är samma göm båda bilderna, och spelarens tur ökar med ett
+import glob
+from PIL import Image
+
+
+import os
+
+filepath2 = "/Users/oscarazrak/Documents/"
+
+def get_all_images(folder, ext):
+
+    all_files = []
+    #Iterate through all files in folder
+    for file in os.listdir(folder):
+        #Get the file extension
+        _,  file_ext = os.path.splitext(file)
+
+        #If file is of given extension, get it's full path and append to list
+        if ext in file_ext:
+            full_file_path = os.path.join(folder, file)
+            all_files.append(full_file_path)
+
+    #Get list of all files
+    return all_files
+
+tif_files = get_all_images(filepath2, 'png')
+print(tif_files)
+submitSizeButton = Label(root, tif_files).grid(row=0)
+
+mainloop()
